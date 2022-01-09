@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const cluster = require('cluster')
-const {mySocket} = require("./api/socket")
+
 /**************************************************************************************** */
 
 const yargs = require('yargs/yargs')(process.argv.slice(2))
@@ -20,7 +20,7 @@ const args = yargs
     .boolean('producto_mongo')
     .boolean('user_mongo')
     .argv
-
+    
 /**************************************************************************************** */
 /*       Cluster creando instancias                                                       */
 /**************************************************************************************** */
@@ -55,16 +55,9 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
     const httpServer = new HttpServer(app)
     const io = new IOServer(httpServer)
 
-    mysocket = new mySocket(io);
-
-    if (mysocket.getInstancia()) {
-        console.log(`Worker ${process.pid} se encarga de los socket`)
-
-        if (args.mode === 'cluster') {return;}
-    }
-    else {
-        console.log(`Worker ${process.pid} se levanta el server`)
-    }
+    const mysocket = require("./api/socket").getInstancia(io)
+  
+  
 
 
     /**************************************************************************************** */

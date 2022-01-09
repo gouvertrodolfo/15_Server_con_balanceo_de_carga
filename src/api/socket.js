@@ -75,21 +75,17 @@ class mySocket{
 }
 
 function getInstancia(io) {
-
-    console.log(this.socketrunning)
-    
-            if (!this.socketrunning) {
-                this.socketrunning = true;
-                console.log('getInstancia true')
-                this.CrearInstancia();
-                return true;
-            }
-            else {
-                console.log('getInstancia false')
-                return false;
-            }
-    
+   
+        if (!this.instance) {
+            this.instance = new mySocket(io)
+            this.instance.CrearInstancia();
+            return this.instance;
         }
+        else {
+            return console.log('getInstancia false');
+        }
+
+    }
 
 
 module.exports = { getInstancia }
