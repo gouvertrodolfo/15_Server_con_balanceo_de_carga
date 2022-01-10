@@ -15,8 +15,6 @@ class mySocket{
 
         this.io = io
 
-        this.socketrunning = false
-
     };
 
     CrearInstancia() {
@@ -82,7 +80,7 @@ function getInstancia(io) {
             return this.instance;
         }
         else {
-            return console.log('getInstancia false');
+            return this.instance;
         }
 
     }

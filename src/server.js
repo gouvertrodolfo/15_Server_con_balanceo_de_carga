@@ -55,8 +55,9 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
     const httpServer = new HttpServer(app)
     const io = new IOServer(httpServer)
 
-    const mysocket = require("./api/socket").getInstancia(io)
-  
+    
+            require("./api/socket").getInstancia(io)
+    
   
 
 
