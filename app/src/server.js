@@ -20,7 +20,7 @@ const args = yargs
     .boolean('producto_mongo')
     .boolean('user_mongo')
     .argv
-    
+
 /**************************************************************************************** */
 /*       Cluster creando instancias                                                       */
 /**************************************************************************************** */
@@ -46,20 +46,16 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
 
 } else {
 
-        /**************************************************************************************** */
-        const { Server: HttpServer } = require('http')
-        const { Server: IOServer } = require('socket.io')
-        /**************************************************************************************** */
-   
+    /**************************************************************************************** */
+    const { Server: HttpServer } = require('http')
+    const { Server: IOServer } = require('socket.io')
+    /**************************************************************************************** */
+
     const app = express()
     const httpServer = new HttpServer(app)
     const io = new IOServer(httpServer)
 
-    
-            require("./api/socket").getInstancia(io)
-    
-  
-
+    require("./api/socket").getInstancia(io)
 
     /**************************************************************************************** */
     const { apiProductos } = require("./routes/apiProductos")
