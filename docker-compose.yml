@@ -20,7 +20,6 @@ services:
         - "8081:8081"
 
     nginx:
-        restart: always
         build:
           context: ./nginx
         ports:

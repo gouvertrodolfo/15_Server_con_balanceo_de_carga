@@ -9,7 +9,7 @@ const yargs = require('yargs/yargs')(process.argv.slice(2))
 const args = yargs
     .option('port', {
         alias: 'p',
-        default: 8080,
+        default: 8081,
         type: 'number'
     })
     .option('mode', {
